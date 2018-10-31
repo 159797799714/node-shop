@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="/public/boots/css/bootstrap.css"/>
+
+</head>
+<body>
+
+    <%- include('./header.html') %>
+
+    <h1>商品管理</h1>
+
+    <a class="btn btn-success" href="/seller/add/goods">+</a>
+
+
+    <table class="table">
+        <tr>
+            <th>商品名称</th>
+            <th>价格</th>
+            <th>图片</th>
+            <th>操作</th>
+        </tr>
+
+        <%for(var i = 0; i < data.length; i++){%>
+            <tr>
+                <td><%=data[i].goodsname%></td>
+                <td><%=data[i].price%></td>
+                <td>
+                    <img width="50" src="<%=data[i].images[0]%>"/>
+                </td>
+                <td>
+                    <a class="btn btn-danger" href="/seller/delete/goods?goodsid=<%=data[i]._id%>">删除</a>
+                    <a class="btn btn-warning" href="/seller/modify/goods?goodsid=<%=data[i]._id%>">修改</a>
+                </td>
+            </tr>
+        <%}%>
+
+    </table>
+
+    
+</body>
+</html>

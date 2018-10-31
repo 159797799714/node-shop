@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="/public/boots/css/bootstrap.css"/>
+    <link rel="stylesheet" href="/public/css/style.css"/>
+</head>
+<body>
+
+    <h1>注册</h1>
+
+    <form>
+        <div class="form-group">
+            <label>店铺名字：</label>
+            <input type="text" class="form-control" name="name">
+        </div>
+        <div class="form-group">
+            <label>密码：</label>
+            <input type="password" class="form-control" name="password">
+        </div>
+        <div class="form-group">
+            <label>确认密码：</label>
+            <input type="password" class="form-control" name="rePassword">
+        </div>
+        <div class="form-group">
+            <label>logo:</label>
+            <input type="file" class="form-control" name="logo">
+        </div>
+        <div class="form-group">
+            <label>banner:</label>
+            <input type="file" class="form-control" name="banner">
+        </div>
+        <div class="btn btn-block btn-success" id="confirm">注册</div>
+        <a href="/seller/login">已有账号，直接登录</a>
+    </form>
+
+
+    <script src="https://ss1.bdstatic.com/5eN1bjq8AAUYm2zgoY3K/r/www/cache/static/protocol/https/jquery/jquery-1.10.2.min_65682a2.js"></script>
+    <script>
+        
+        $('#confirm').on('click', function(){
+            // !value
+            
+
+            // 发送请求
+            var formDOM = document.querySelector('form');
+            var formData = new FormData(formDOM);
+            $.ajax({
+                url: '/seller/api/regiester',
+                method: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function(data){
+                    console.log(data);
+                    if(data.status === 0){
+                        window.location.href = '/seller/login';
+                    }else{
+                        alert(data.message);
+                    }
+                },  
+                fail: function(){
+                    console.log('注册失败');
+                }
+            })
+
+
+
+
+        })
+    
+    
+    
+    </script>
+    
+</body>
+</html>

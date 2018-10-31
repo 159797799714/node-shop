@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="/public/boots/css/bootstrap.css"/>
+    <style>
+        .goods-wrap .goods-item, .shop-wrap .shop-item{
+            width: 25%;
+            float: left;
+        }
+        .goods-wrap .goods-item img, .shop-wrap .shop-item img{
+            width: 60%;
+            height: 60px;
+            margin: 0 auto;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <%- include('./header.html') %>
+
+    <h1>首页</h1>
+
+    <h3>商品</h3>
+    <div class="goods-wrap">
+        <%for(var i = 0; i < goodslist.length; i++){%>
+            <div class="goods-item">
+                <img width="50" src="<%=goodslist[i].images[0]%>"/>
+                <h6><%=goodslist[i].goodsname%></h6>
+            </div>
+        <%}%>
+    </div>
+
+    <h3>店铺</h3>
+    <div class="shop-wrap">
+        <%for(var i = 0; i < shoplist.length; i++){%>
+            <div class="shop-item">
+                <img width="50" src="<%=shoplist[i].logo%>"/>
+                <h6><%=shoplist[i].sellername%></h6>
+            </div>
+        <%}%>
+    </div>
+    
+</body>
+</html>

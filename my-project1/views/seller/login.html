@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="/public/boots/css/bootstrap.css"/>
+    <link rel="stylesheet" href="/public/css/style.css"/>
+
+</head>
+<body>
+
+        <h1>登录</h1>
+
+
+    <div>
+        <div class="form-group">
+            <label>店铺名字：</label>
+            <input type="text" class="form-control">
+        </div>
+        <div class="form-group">
+            <label>密码：</label>
+            <input type="password" class="form-control">
+        </div>
+        <button id="confirm" class="btn btn-block btn-success">登录</button>
+        <a href="/seller/regiester">没有账号，请先注册</a>
+    </div>
+
+
+    <script src="https://ss1.bdstatic.com/5eN1bjq8AAUYm2zgoY3K/r/www/cache/static/protocol/https/jquery/jquery-1.10.2.min_65682a2.js"></script>
+    <script>
+        $('#confirm').on("click", function(){
+            // 获得用户的输入
+            var name = $('input[type=text]').val();
+            var psd = $('input[type=password]').val();
+
+            // 判断
+
+
+            // 发送请求
+            $.ajax({
+                url: '/seller/api/login',
+                method: "POST",
+                data: {
+                    sellername: name,
+                    password: psd
+                },
+                success: function(data){
+                    console.log(data);
+                    if(data.status === 0){
+                        window.location.href = '/seller/goods/list';
+                    }else{
+                        alert(data.message);
+                    }
+                },
+                fail: function(){
+                    console.log('请求失败');
+                }
+            })
+
+
+
+
+        })
+    
+    </script>
+    
+</body>
+</html>
